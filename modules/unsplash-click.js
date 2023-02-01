@@ -1,4 +1,6 @@
+require('chromedriver')
 const { Builder, Browser, By, Key, until, EC } = require('selenium-webdriver')
+
 var dotenv = require('dotenv')
 dotenv.config()
 
@@ -7,7 +9,7 @@ const timer = (ms) => new Promise((res) => setTimeout(res, ms))
 const unsplashClick = async (theme) => {
 	console.log('current theme: ' + theme)
 
-	let driver = await new Builder().forBrowser(Browser.CHROME).build()
+	let driver = await new Builder().forBrowser('chrome').build()
 
 	var width = 600
 	var height = 600

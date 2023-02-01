@@ -5,7 +5,7 @@ const unsplashSchedule = (config) => {
 	let scheduleIndex = 0;
 
 
-	cron.scheduleJob('0 */4 * * * *', function () {
+	cron.scheduleJob('0 */1 * * * *', function () {
 		console.log('iteration has been started')
 		unsplashClick(config.themes[scheduleIndex%config.themes.length])
 		scheduleIndex++
