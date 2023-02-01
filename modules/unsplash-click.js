@@ -10,8 +10,6 @@ const timer = (ms) => new Promise((res) => setTimeout(res, ms))
 const unsplashClick = async (theme) => {
 	console.log('current theme: ' + theme)
 
-	// .addExtensions(new File("/path/to/extension.crx")
-
 	let driver = await new Builder()
 		.forBrowser('chrome')
 		.setChromeService(
@@ -28,13 +26,16 @@ const unsplashClick = async (theme) => {
 
 	try {
 		await driver.get('https://unsplash.com/login')
+		await console.log('got login page')
 		await driver.wait(
 			until.elementIsVisible(driver.findElement(By.name('commit'))),
 			5000,
 		)
+		await console.log('found commit element')
 		await driver
 			.findElement(By.name('user[email]'))
 			.sendKeys(process.env.UNSPLASH_LOGIN)
+		await console.log('found email input and filled')
 		await driver
 			.findElement(By.name('user[password]'))
 			.sendKeys(process.env.UNSPLASH_PW, Key.RETURN)
