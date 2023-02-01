@@ -25,6 +25,7 @@ const unsplashClick = async (theme) => {
 	driver.manage().window().setRect({ x: 0, y: 0, width: width, height: height })
 
 	try {
+		await console.log('start browsing')
 		await driver.get('https://unsplash.com/login')
 		await console.log('got login page')
 		await driver.wait(
