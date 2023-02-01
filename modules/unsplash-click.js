@@ -1,5 +1,6 @@
 require('chromedriver')
-const { Builder, Browser, By, Key, until, EC } = require('selenium-webdriver')
+const { Builder, Browser, By, Key, until } = require('selenium-webdriver')
+const chrome = require('selenium-webdriver/chrome');
 
 var dotenv = require('dotenv')
 dotenv.config()
@@ -9,7 +10,14 @@ const timer = (ms) => new Promise((res) => setTimeout(res, ms))
 const unsplashClick = async (theme) => {
 	console.log('current theme: ' + theme)
 
-	let driver = await new Builder().forBrowser('chrome').build()
+	// .addExtensions(new File("/path/to/extension.crx")
+
+	let driver = await new Builder()
+		.forBrowser('chrome')
+		.setChromeService(
+			new chrome.ServiceBuilder('/usr/src/app/chromedriver/chromedriver'),
+		)
+		.build()
 
 	var width = 600
 	var height = 600
