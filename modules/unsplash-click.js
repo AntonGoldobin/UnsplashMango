@@ -13,7 +13,7 @@ const unsplashClick = async (theme) => {
 	let driver = await new Builder()
 		.forBrowser('chrome')
 		.setChromeService(
-			new chrome.ServiceBuilder('/usr/src/app/chromedriver/chromedriver'),
+			new chrome.ServiceBuilder('./chromedriver/chromedriver'),
 		).setChromeOptions(
 			new chrome.Options().headless()
 		)
