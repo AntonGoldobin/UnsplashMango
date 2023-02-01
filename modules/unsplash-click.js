@@ -37,7 +37,7 @@ const unsplashClick = async (theme) => {
 	const driver = await new webdriver.Builder()
 		.forBrowser('chrome')
 		.setChromeOptions(options)
-		.setChromeService(new chrome.ServiceBuilder('./chromedriver/chromedriver'))
+		.setChromeService(new chrome.ServiceBuilder('./chromedriver/chromedriver-linux'))
 		.build()
 
 	await driver.manage().window().setRect({ x: 0, y: 0, width: width, height: height })
