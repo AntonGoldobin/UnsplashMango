@@ -7,11 +7,12 @@ require('chromedriver')
 
 let options = new chrome.Options()
 // Below arguments are critical for Heroku deployment
-options.addArguments('--no-sandbox')
-options.addArguments('--disable-infobars')
-options.addArguments('--disable-dev-shm-usage')
-options.addArguments('--headless')
-options.addArguments('--disable-gpu')
+// options.addArguments('--no-sandbox')
+// options.addArguments('--disable-infobars')
+// options.addArguments('--disable-dev-shm-usage')
+// options.addArguments('--headless')
+// options.addArguments('--disable-gpu')
+options.addArguments("--disable-features=VizDisplayCompositor");
 
 var dotenv = require('dotenv')
 dotenv.config()
@@ -39,7 +40,7 @@ const unsplashClick = async (theme) => {
 		.setChromeService(new chrome.ServiceBuilder('./chromedriver/chromedriver'))
 		.build()
 
-	driver.manage().window().setRect({ x: 0, y: 0, width: width, height: height })
+	await driver.manage().window().setRect({ x: 0, y: 0, width: width, height: height })
 
 	try {
 		await console.log('start browsing')
