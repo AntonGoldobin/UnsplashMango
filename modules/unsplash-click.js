@@ -1,6 +1,17 @@
 require('chromedriver')
 const { Builder, Browser, By, Key, until } = require('selenium-webdriver')
-const chrome = require('selenium-webdriver/chrome');
+
+const webdriver = require('selenium-webdriver')
+const chrome = require('selenium-webdriver/chrome')
+require('chromedriver')
+
+let options = new chrome.Options()
+// Below arguments are critical for Heroku deployment
+options.addArguments('--no-sandbox')
+options.addArguments('--disable-infobars')
+options.addArguments('--disable-dev-shm-usage')
+options.addArguments('--headless')
+options.addArguments('--disable-gpu')
 
 var dotenv = require('dotenv')
 dotenv.config()
@@ -10,17 +21,23 @@ const timer = (ms) => new Promise((res) => setTimeout(res, ms))
 const unsplashClick = async (theme) => {
 	console.log('current theme: ' + theme)
 
-	let driver = await new Builder()
-		.forBrowser('chrome')
-		.setChromeService(
-			new chrome.ServiceBuilder('./chromedriver/chromedriver'),
-		).setChromeOptions(
-			new chrome.Options().headless()
-		)
-		.build()
+	// let driver = await new Builder()
+	// 	.forBrowser('chrome')
+	// 	.setChromeService(
+	// 		new chrome.ServiceBuilder('./chromedriver/chromedriver'),
+	// 	).setChromeOptions(
+	// 		new chrome.Options().headless()
+	// 	)
+	// 	.build()
 
 	var width = 600
 	var height = 600
+
+	const driver = await new webdriver.Builder()
+		.forBrowser('chrome')
+		.setChromeOptions(options)
+		.setChromeService(new chrome.ServiceBuilder('./chromedriver/chromedriver'))
+		.build()
 
 	driver.manage().window().setRect({ x: 0, y: 0, width: width, height: height })
 
