@@ -16,11 +16,11 @@ interface Error {
 
 dotenv.config()
 
-const port = process.env.NODE_PORT
+const port = process.env.NODE_PORT || 3000
 const app: Express = express()
 
 // view engine setup
-app.set('views', path.join(__dirname, '../src/views'))
+app.set('views', path.join(__dirname, './views'))
 app.set('view engine', 'jade')
 
 app.use(logger('dev'))
@@ -49,7 +49,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 })
 
 app.listen(port, () => {
-	console.log(`Example app listening on port ${port}`)
+	console.log(`Unsplash Like is listening on port ${port}`)
 })
 
 goldenAntelope()
