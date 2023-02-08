@@ -9,7 +9,6 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm install
-RUN npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript
 # If you are building your code for production
 # RUN npm ci --only=production
 
