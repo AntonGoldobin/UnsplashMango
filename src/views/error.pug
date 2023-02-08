@@ -1,0 +1,67 @@
+div.my-class#my-id
+  h1.my-heading An example page of Jade/Pug elements in context
+
+  p Set "Jade" as the HTML preprocesor for this to work, view the HTML & toggle "View Compiled".
+  
+  h2 HTML stuff: images, lists, paragraphs, amd links
+  img.my-img-class(src="http://www.webdevelopersstudio.com/images/logo.png")
+  ul.genre-list
+    li An unordered list
+    li The first letter grouping on a line assumed to be a tag
+    li Indents and white space count
+  p. 
+    This is a long paragraph that will not be treated as individual lines because of the dot after the p tag.  Note the verbiage must start on the line following the p and the dot.
+  p But apparently, you can have a long paragraph that goes to the end of the soft line wrap like this line is doing just about now, and you don't need the dot thing.  Not sure about that.    
+  p By the way, we're following along with 
+    a(href='https://www.sitepoint.com/jade-tutorial-for-beginners/') this nice tutorial,
+    |  but we don't always need to pace through.  Sometimes we just need robust examples in context! For example, examine the uncompiled code to see the "pipe" mark to indicate not to start a new paragarph after the anchor.  
+ 
+  h2 Javascript: the easy bits
+   div
+    ol
+     - for (var i=1; i<=x; i++) {
+      li a dash introduces a bit of js. a FOR, on index # #{i}!
+     - }
+  p But we can also use magic Jade looping syntax
+  - var points = ["Array item 1", "Item 2", "And here 3 are all shown with a shortened 'for' situatated inside abbreviated tags"]
+  
+  h3 Let's Iterate the Jade way
+  for point in points
+    div.card
+     p= point
+  em But for some reason 'span' doesn't work.  'div' does.  
+  
+  h3 An  Interpolation example
+  - var myName = "Terri Karp";
+  div
+    p This is my name #{myName} as you can see.  Similar to Template Literals in ES6, but we use a pound sign.  OK then.  (See othr ex. in the ul above.)
+  
+  h2 Mixins: define a pattern and use again and again
+  
+  h3 Simple list as a mixin (not much point)
+  mixin a-list(name)
+    li.a-list= name
+  ul
+    +a-list('item 1')
+    +a-list('second item')
+    +a-list('last one') 
+  
+  h3 But they get more complex, and the tighter syntax is useful  
+  mixin pic(picHeight, picWidth, picCaption)
+    figure.pic
+      img(src="http://placekitten.com/#{picHeight}/#{picWidth}")
+      figcaption.image-caption= picCaption
+  +pic ("300", "200", "Specifing width, height, & caption.")
+  +pic ("300", "100", "Short cute kitten.")
+ 
+  h3 And we can ask questions
+  mixin book(bookTitle, bookRating)
+   ul.book
+     li.title-class= bookTitle 
+       if bookRating > 3
+         span.rating    ...You'll love it
+       else
+         span.rating    ...You won't like it
+ 
+  +book ("Othello", 2)
+  +book ("Hamlet", 4)
