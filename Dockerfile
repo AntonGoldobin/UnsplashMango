@@ -9,6 +9,7 @@ WORKDIR /usr/src/app
 COPY package*.json /usr/src/app/
 RUN npm config set registry http://registry.npmjs.org/
 RUN npm install
+RUN npm set registry=https://registry.npmjs.org/
 # If you are building your code for production
 # RUN npm ci --only=production
 
