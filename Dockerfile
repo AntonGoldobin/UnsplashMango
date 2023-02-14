@@ -1,5 +1,6 @@
 FROM node:16
-
+ENV NODE_ENV=production
+ENV NODE_PORT=8000
 # Create app directory
 WORKDIR /usr/src/app
 
@@ -8,14 +9,14 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json /usr/src/app/
 RUN npm config set registry http://registry.npmjs.org/
-RUN npm install
+RUN npm install -g tslint typescript
+RUN npm install -g ts-node
+RUN npm install --save-dev
 RUN npm set registry=https://registry.npmjs.org/
 # If you are building your code for production
 # RUN npm ci --only=production
 
 # Bundle app source
 COPY . /usr/src/app/
-
-EXPOSE 8000
 
 CMD ["npm", "start"]

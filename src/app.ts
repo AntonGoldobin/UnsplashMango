@@ -5,6 +5,7 @@ import * as path from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import { goldenAntelope } from './bots/golden-antelope'
+import  * as pug  from 'pug'
 
 import {router as indexRouter } from './routes/index'
 
@@ -18,15 +19,15 @@ dotenv.config()
 const port = process.env.NODE_PORT || 3000
 const app: Express = express()
 
-// view engine setup
-app.set('views', path.join(__dirname, './views'))
-app.set('view engine', 'pug')
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.set('views', path.join(__dirname, 'web/'));
 
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '../public')))
 
 app.use('/', indexRouter)
 

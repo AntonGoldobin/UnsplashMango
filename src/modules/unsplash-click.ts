@@ -63,7 +63,7 @@ export const unsplashClick = async (theme= 'thailand') => {
 		)
 
 		for await (const like of likesList) {
-			// like.sendKeys(Key.RETURN)
+			like.sendKeys(Key.RETURN)
 			console.log('button has been clicked')
 			await timer(3000)
 		}
