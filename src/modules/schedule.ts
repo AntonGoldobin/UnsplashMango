@@ -5,7 +5,7 @@ import { UnsplashConfig } from '../bots/golden-antelope'
 export const unsplashSchedule = (config: UnsplashConfig) => {
 	let scheduleIndex = 0
 
-	cron.scheduleJob('0 */1 * * * *', () => {
+	cron.scheduleJob(config.cron, () => {
 		console.log('iteration has been started')
 		if(config.scheduleRepeats === "all" || scheduleIndex < config.scheduleRepeats) {
 			unsplashClick(config.themes[scheduleIndex % config.themes.length])
