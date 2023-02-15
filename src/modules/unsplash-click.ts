@@ -18,7 +18,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 const timer = (ms: number) => new Promise((res) => setTimeout(res, ms))
-const chromeServerUrl = process.env.NODE_ENV === "development" ? "http://chrome.caprover.goldenantelope.nl:4444/wd/hub" : "http://srv-captain--chrome:4444/wd/hub"
+const chromeServerUrl = process.env.CHROME_SERVER
 
 export const unsplashClick = async (theme= 'thailand') => {
 	console.log('current theme: ' + theme)
