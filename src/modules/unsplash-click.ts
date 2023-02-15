@@ -18,6 +18,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 const timer = (ms: number) => new Promise((res) => setTimeout(res, ms))
+const chromeServerUrl = process.env.NODE_ENV === "development" ? "http://chrome.caprover.goldenantelope.nl:4444/wd/hub" : "http://srv-captain--chrome:4444/wd/hub"
 
 export const unsplashClick = async (theme= 'thailand') => {
 	console.log('current theme: ' + theme)
@@ -28,9 +29,11 @@ export const unsplashClick = async (theme= 'thailand') => {
 	const driver = await new webdriver.Builder()
 		.forBrowser('chrome')
 		.setChromeOptions(options)
-		.usingServer("http://chrome.caprover.goldenantelope.nl:4444/wd/hub")
+		.usingServer(chromeServerUrl)
 		// .usingServer("http://localhost:4444/wd/hub")
 		.build()
+
+
 
 	await driver
 		.manage()
