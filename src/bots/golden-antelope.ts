@@ -9,7 +9,7 @@ export interface UnsplashConfig {
 export const goldenAntelope = () => {
 	const config: UnsplashConfig = {
 		themes: ['thailand', 'asia', 'phuket', 'city', 'travel', 'samui', 'bangkok', 'huahin'],
-		scheduleRepeats: 1,
+		scheduleRepeats: "all",
 		cron: '0 */8 * * *'
 	}
 
